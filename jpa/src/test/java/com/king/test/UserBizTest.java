@@ -25,8 +25,14 @@ public class UserBizTest {
     @Autowired
     UserBiz userBiz;
 
+    public void printList(List list) {
+        for (Object o : list) {
+            System.out.println(o);
+        }
+    }
+
     @Test
     public void selectAll() {
-        System.out.println(userBiz.selectAll());
+        printList(userBiz.selectAll());
     }
 }

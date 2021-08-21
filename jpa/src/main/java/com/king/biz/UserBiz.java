@@ -4,6 +4,7 @@ import com.king.bean.User;
 
 import com.king.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +21,14 @@ public class UserBiz {
     @Autowired
     UserDao userDao;
 
-    public  List<User> selectAll(){
+    Example<User> example;
+
+    public List<User> selectAll() {
         return userDao.findAll();
     }
-    public List<User> selectById(Integer id) {
-        return null;
-    }
+
+//    public List<User> selectById(Integer id) {
+//       userDao.findAll(example,)
+//    }
 }
+
