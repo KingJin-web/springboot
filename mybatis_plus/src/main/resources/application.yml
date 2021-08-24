@@ -1,0 +1,25 @@
+server:
+  port: 9090
+  servlet:
+    session:
+      timeout: 60000
+    context-path: /myres
+
+logging:
+  level:
+    root: warn
+    com.ex: info
+    org.springframework: warn
+  file:
+    name: ./log/res.log
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: aaaa
