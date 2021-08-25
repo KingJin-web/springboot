@@ -1,6 +1,7 @@
 package com.king.mybatis_plus.bean;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,8 +16,8 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class User implements Serializable {
-    private static final long serialVersionUID = -5644799954031156649L;
+public class User{
+   /// private static final long serialVersionUID = -5644799954031156649L;
     private Integer id;
     private String name;
     private String sex;

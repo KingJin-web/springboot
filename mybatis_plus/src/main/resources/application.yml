@@ -13,7 +13,9 @@ logging:
   file:
     name: ../mybatis.log
 
-
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

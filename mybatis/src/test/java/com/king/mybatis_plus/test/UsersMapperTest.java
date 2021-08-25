@@ -1,21 +1,16 @@
-package com.king.test;
+package com.king.mybatis_plus.test;
 
 import com.king.bean.Users;
 import com.king.mapper.UsersMapper;
 
-import com.king.util.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @SpringBootTest
 public class UsersMapperTest {
