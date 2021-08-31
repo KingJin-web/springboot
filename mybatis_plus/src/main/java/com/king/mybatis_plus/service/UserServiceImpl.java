@@ -74,8 +74,7 @@ public class UserServiceImpl {
 
     // 计数
     public int count() {
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        return userMapper.selectCount(userQueryWrapper);
+        return userMapper.selectCount(null);
     }
 
     // 通过ID删除
