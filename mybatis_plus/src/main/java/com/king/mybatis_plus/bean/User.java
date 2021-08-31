@@ -21,7 +21,6 @@ import java.io.Serializable;
 
 
 @EqualsAndHashCode(callSuper = true)
-@Mapper
 @Data
 @Builder
 @TableName(value = "User")//指定表名

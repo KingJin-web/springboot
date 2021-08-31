@@ -9,4 +9,5 @@ target/
 *.iws
 *.iml
 *.ipr
+*.log
 
