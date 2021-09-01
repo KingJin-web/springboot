@@ -58,19 +58,28 @@ public class UserServiceImplTest {
 
     @Test
     public void update() {
-//        userDao.query().forEach(System.out::println);
-//        HashMap
+//        User(id=37, name=test37, sex=女, pwd=aaaa, email=a37@qq.com)
+//        User(id=38, name=test38, sex=男, pwd=aaaa, email=a38@qq.com)
+//        User(id=39, name=test39, sex=女, pwd=aaaa, email=a39@qq.com)
+        User user = userDao.findUserById(39);
+        System.out.println(user);
+        user.setSex("??");
+        userDao.save(user);
     }
 
     @Test
     public void delete() {
-        User user = new User();
-        user.setId(20);
-        userDao.delete(user);
-        List<Integer> list = new ArrayList<>();
-        list.add(21);
-        list.add(22);
-        userDao.deleteAllById(list);
+//        User user = new User();
+//        user.setId(20);
+//        userDao.delete(user);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(21);
+//        list.add(22);
+//        userDao.deleteAllById(list);
+
+        User user1 = new User();
+        user1.setId(40);
+        userDao.delete(user1);
     }
 
 }

@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @create: 2021-08-31 14:17
  */
 public class UserServiceImpl {
-    @Autowired
-    UserDao userDao;
+
 
 
 }
