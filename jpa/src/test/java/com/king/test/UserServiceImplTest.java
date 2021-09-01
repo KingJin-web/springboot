@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @SpringBootTest
@@ -61,7 +58,8 @@ public class UserServiceImplTest {
 
     @Test
     public void update() {
-        userDao.query().forEach(System.out::println);
+//        userDao.query().forEach(System.out::println);
+//        HashMap
     }
 
     @Test

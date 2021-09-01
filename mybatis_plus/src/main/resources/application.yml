@@ -11,7 +11,7 @@ logging:
     com.king: info
     org.springframework: error
   file:
-    name: ../mybatis-plus.log
+    name: ../log/mybatis-plus.log
 
 mybatis-plus:
   configuration:

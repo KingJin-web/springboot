@@ -8,10 +8,10 @@ server:
 logging:
   level:
     root: warn
-    com.ex: info
+    com.king: info
     org.springframework: warn
   file:
-    name: ./log/res.log
+    name: ../log/mybatis.log
 
 mybatis:
   configuration:

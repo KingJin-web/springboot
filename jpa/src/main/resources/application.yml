@@ -10,3 +10,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+logging:
+  level:
+    root: warn
+    com.king: info
+    org.springframework: warn
+  file:
+    name: ../log/jpa.log
