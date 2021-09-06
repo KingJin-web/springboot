@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-
 import java.util.List;
 
 /**
@@ -14,22 +13,19 @@ import java.util.List;
  * @author: King
  * @create: 2021-08-08 03:11
  */
-
 public interface UserDao extends JpaRepository<User, Integer> {
 
-
-    //方法名称必须要遵循驼峰式命名规则，findBy（关键字）+属性名称（首字母大写）+查询条件（首字母大写）
-    List<User> findByName(String name);
-
-    User findUserById(Integer id);
-
-    List<User> findByNameLike(String name);
-
-    @Query("from User u where u.name=:name")
-    User findUser(@Param("name") String name);
-
-    @Query("select count(u.name)  from User u group by u.sex")
-    List<Integer> query();
-
+//    //方法名称必须要遵循驼峰式命名规则，findBy（关键字）+属性名称（首字母大写）+查询条件（首字母大写）
+//    List<User> findByName(String name);
+//
+//    User findUserById(Integer id);
+//
+//    List<User> findByNameLike(String name);
+//
+//    @Query("from User u where u.name=:name")
+//    User findUser(@Param("name") String name);
+//
+//    @Query("select count(u.name)  from User u group by u.sex")
+//    List<Integer> query();
 
 }

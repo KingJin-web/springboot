@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @Builder
 @Data
-public class Users {
+public class Users implements Serializable {
     //自增唯一id
     private Long id;
 

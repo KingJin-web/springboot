@@ -7,7 +7,7 @@ spring:
   jpa:
     database: MySQL
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
+    show-sql: true #日志中显示sql语句
     hibernate:
       ddl-auto: update
 logging:
