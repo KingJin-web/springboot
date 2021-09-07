@@ -30,7 +30,7 @@ public class UserBizTest {
 
     @Test
     public void queryAll() {
-        System.out.println(userBiz.queryAll());
+        userBiz.queryAll().forEach(System.out::println);
     }
 
     @Test
