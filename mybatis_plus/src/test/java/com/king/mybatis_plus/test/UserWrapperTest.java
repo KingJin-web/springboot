@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.king.mybatis_plus.bean.User;
 
 import com.king.mybatis_plus.mapper.UserMapper;
@@ -58,6 +60,24 @@ public class UserWrapperTest {
         //条件
         updateWrapper.like("name", "test1");
         userMapper.update(user, updateWrapper);
+    }
+
+    @Test
+    public void TestPage(){
+        //配置了分页插件后，还是和以前一样的使用selectpage方法，
+        //但是现在就是真正的物理分页了，sql语句中有limit了
+        Page<User> page = new Page<>(1, 2);
+        IPage<User> selectPage = userMapper.selectPage(page,null);
+        System.out.println(selectPage);
+        System.out.println("================= 相关的分页信息 ==================");
+        System.out.println("总条数:" + selectPage.getTotal());
+        System.out.println("当前页码:" + selectPage.getCurrent());
+        System.out.println("总页数:" + selectPage.getPages());
+        System.out.println("每页显示条数:" + selectPage.getSize());
+//        System.out.println("是否有上一页:" + selectPage.hasPrevious());
+//        System.out.println("是否有下一页:" + selectPage.hasNext());
+        //还可以将查询到的结果set进page对象中
+       // page.setRecords((List<User>) employeeList);
     }
 
     @Test

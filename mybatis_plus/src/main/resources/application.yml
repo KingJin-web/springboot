@@ -20,9 +20,12 @@ mybatis-plus:
     # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
 
 
+
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
