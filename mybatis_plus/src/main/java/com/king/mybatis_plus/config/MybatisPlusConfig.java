@@ -1,9 +1,9 @@
-package com.king.mybatis_plus.Config;
+package com.king.mybatis_plus.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,4 +54,13 @@ public class MybatisPlusConfig {
         interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
         return interceptor;
     }
+
+    //乐观锁插件
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor4() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+
 }

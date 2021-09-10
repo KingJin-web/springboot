@@ -99,7 +99,7 @@ public class UserWrapperTest {
 
     }
 
-    @After
+    @Test
     public void after() {
         System.out.println("查询全部");
         userMapper.selectList(null).forEach(System.out::println);

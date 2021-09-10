@@ -23,7 +23,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.*;
 
 @SpringBootTest
-
 public class UserToolTest {
     @Autowired
     UserMapper userMapper;
@@ -73,8 +72,25 @@ public class UserToolTest {
     }
 
     @Test
-    public void Test4(){
+    public void Test4() {
         //条件为null，就是删除全表，执行分析插件会终止该操作
         userMapper.delete(null);
+    }
+
+    @Test
+    //正常测试，更新数据时会校验版本号，新旧版本号一致时，表示当前数据未被其他事务更新过，更新通过，版本号自动+1；
+    public void Test5() {
+
+        // 查询一条记录
+        User user = userMapper.selectById(2);
+        //更新
+        user.setName("version1");
+        userMapper.updateById(user);
+        System.out.println("over");
+//        或者
+//        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+//        updateWrapper.set("name", "version");
+//        updateWrapper.eq("id",2);
+//        userMapper.update(user, updateWrapper);
     }
 }
