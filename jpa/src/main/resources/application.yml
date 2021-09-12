@@ -10,6 +10,7 @@ spring:
     show-sql: true #日志中显示sql语句
     hibernate:
       ddl-auto: update
+
 logging:
   level:
     root: warn
