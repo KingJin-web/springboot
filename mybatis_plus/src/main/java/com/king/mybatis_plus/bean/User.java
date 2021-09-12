@@ -51,6 +51,9 @@ public class User extends Model<User> {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
+    //是否被删除，0表示未删除，1表示已经删除
+    //@TableLogic  3.3.0,配置后可以忽略不配置
+    private int flag;
 
     public void println() {
         System.out.println(this);

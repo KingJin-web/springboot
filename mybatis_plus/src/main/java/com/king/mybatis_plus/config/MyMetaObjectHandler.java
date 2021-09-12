@@ -6,6 +6,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -23,12 +24,16 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         log.info(" -------------------- start insert fill-----------------------");
         this.strictInsertFill(metaObject, "createTime", LocalDateTime::now, LocalDateTime.class);
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+
         // 起始版本 3.3.3(推荐)
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info(" -------------------- start update fill -----------------------");
-        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+        log.info(" -------------------- start update fill ----------------------- ");
+        //this.strictUpdateFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+        //使用上面的填充策略，当数据库字段不为空时将不填充
+        //使用下面的填充策略，不论数据库中updateTime字段是否有值，都将该值更新。
+        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
     }
 }
