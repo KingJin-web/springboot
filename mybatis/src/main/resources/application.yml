@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       timeout: 60000
-    context-path: /myres
+    context-path: /mybits
 
 logging:
   level:

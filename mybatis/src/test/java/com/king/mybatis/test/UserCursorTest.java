@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @program: springboot
@@ -45,9 +47,7 @@ public class UserCursorTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession();
              Cursor<User> cursor = sqlSession.getMapper(UserMapper.class).scan(10)) {
-
             cursor.forEach(System.out::println);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

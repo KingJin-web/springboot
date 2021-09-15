@@ -1,8 +1,10 @@
 package com.king.mapper;
 
+import com.king.bean.User;
 import com.king.bean.Users;
 import com.king.dao.UsersDaoProvider;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.cursor.Cursor;
 
 import java.util.List;
 
@@ -24,4 +26,11 @@ public interface UsersMapper {
     @Insert("insert into users(time_datetime, time_timestamp, time_long) value(#{timeDate}, #{timeTimestamp}, #{timeLong})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void saveUsers(Users users);
+
+    //TODO
+    @Select("select * from users limit #{limit}")
+    Cursor<Users> scan(@Param("limit") int limit);
+
+    @Select("select * from users limit #{limit}")
+    List<Users> selectList(@Param("limit") int limit);
 }
