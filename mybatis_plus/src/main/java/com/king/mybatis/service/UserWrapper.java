@@ -1,9 +1,8 @@
-package com.king.mybatis_plus.service;
+package com.king.mybatis.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.king.mybatis_plus.bean.User;
+import com.king.mybatis.bean.User;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
 
 /**
  * @program: springboot

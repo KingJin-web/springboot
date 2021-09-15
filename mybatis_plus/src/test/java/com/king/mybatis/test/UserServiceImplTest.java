@@ -1,7 +1,7 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
-import com.king.mybatis_plus.bean.User;
-import com.king.mybatis_plus.service.UserServiceImpl;
+import com.king.mybatis.bean.User;
+import com.king.mybatis.service.UserServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,13 @@ public class UserServiceImplTest {
         List<User> users = new ArrayList<>();
         for (int i = 0; i < 15; ++i) {
             User user = User.builder().id(i + 1).name("test" + i).sex(i % 2 == 0 ? "男" : "女").pwd("aaaa").email("123" + i + "@qq.com").build();
+
             users.add(user);
         }
         users.forEach(System.out::println);
         userService.add(users);
+
+
     }
 
     @Test

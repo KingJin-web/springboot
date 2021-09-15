@@ -1,11 +1,11 @@
 package com.king.bean;
 
 
-
-
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Closeable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,14 +17,17 @@ import java.util.List;
 
 @Data
 @Builder
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -7585862229833387698L;
     private Integer id;
     private String name;
     private String sex;
     private String pwd;
     private String email;
 
-    public User() { }
+    public User() {
+    }
 
     public User(Integer id, String name, String sex, String pwd, String email) {
         this.id = id;

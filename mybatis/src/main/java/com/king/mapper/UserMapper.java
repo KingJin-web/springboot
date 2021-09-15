@@ -2,7 +2,9 @@ package com.king.mapper;
 
 import com.king.bean.User;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.mapping.FetchType;
+
 
 import java.util.List;
 import java.util.Map;
@@ -61,4 +63,8 @@ public interface UserMapper {
      */
     @Select("select * from user where id > ${id}")
     List<User> select2(String id);
+
+    //TODO
+    @Select("select * from user limit #{limit}")
+    Cursor<User> scan(@Param("limit") int limit);
 }

@@ -1,4 +1,4 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
 import com.king.bean.Users;
 import com.king.mapper.UsersMapper;

@@ -1,4 +1,4 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
 
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
@@ -8,14 +8,10 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.king.mybatis_plus.bean.User;
+import com.king.mybatis.bean.User;
 
-import com.king.mybatis_plus.mapper.UserMapper;
-import com.sun.javafx.collections.MappingChange;
-import org.junit.After;
+import com.king.mybatis.mapper.UserMapper;
 import org.junit.Before;
-import com.king.mybatis_plus.bean.User;
-import com.king.mybatis_plus.service.UserServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

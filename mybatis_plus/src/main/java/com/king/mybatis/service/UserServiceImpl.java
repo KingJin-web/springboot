@@ -1,9 +1,9 @@
-package com.king.mybatis_plus.service;
+package com.king.mybatis.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.king.mybatis_plus.bean.User;
-import com.king.mybatis_plus.mapper.UserMapper;
+import com.king.mybatis.bean.User;
+import com.king.mybatis.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

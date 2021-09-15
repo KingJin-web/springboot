@@ -1,7 +1,6 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
-import com.king.mybatis_plus.bean.User;
-import org.junit.Assert;
+import com.king.mybatis.bean.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

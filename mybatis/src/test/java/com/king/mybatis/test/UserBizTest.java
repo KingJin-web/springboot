@@ -1,10 +1,9 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
 import com.king.bean.User;
 import com.king.biz.UserBiz;
 
 import com.king.util.Helper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

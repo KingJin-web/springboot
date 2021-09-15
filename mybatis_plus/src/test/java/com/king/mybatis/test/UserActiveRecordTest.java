@@ -1,10 +1,9 @@
-package com.king.mybatis_plus.test;
+package com.king.mybatis.test;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.king.mybatis_plus.bean.User;
+import com.king.mybatis.bean.User;
 import org.junit.jupiter.api.Test;
 
 /**

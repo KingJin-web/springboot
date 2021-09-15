@@ -1,4 +1,4 @@
-package com.king.mybatis_plus.bean;
+package com.king.mybatis.bean;
 
 
 import com.baomidou.mybatisplus.annotation.*;
@@ -6,10 +6,8 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**

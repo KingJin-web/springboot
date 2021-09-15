@@ -1,9 +1,9 @@
-package com.king.mybatis_plus.mapper;
+package com.king.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.king.mybatis_plus.bean.User;
+import com.king.mybatis.bean.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
