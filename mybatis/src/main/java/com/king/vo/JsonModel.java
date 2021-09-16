@@ -11,10 +11,10 @@ import lombok.Data;
 
 @Data
 public class JsonModel {
-    private Integer code;
+//    private Integer code;
     private String msg;
     //数据的多少
-    private Integer count;
-    private Object data;
+//    private Integer count;
+//    private Object data;
 //    "code":0,"msg":"","count":1000,"data"
 }

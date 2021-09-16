@@ -18,6 +18,14 @@ import java.util.List;
 @Mapper
 public interface UsersMapper {
 
+    //TODO MyBatis 流式查询对比
+    @Select("select * from users limit #{limit}")
+    Cursor<Users> scan(@Param("limit") int limit);
+
+    @Select("select * from users limit #{limit}")
+    List<Users> selectList(@Param("limit") int limit);
+
+
     //批量插入数据方法
     @InsertProvider(type = UsersDaoProvider.class, method = "insertAll")
     void batchSaveUsersList(@Param("list") List<Users> users);
@@ -27,10 +35,5 @@ public interface UsersMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void saveUsers(Users users);
 
-    //TODO
-    @Select("select * from users limit #{limit}")
-    Cursor<Users> scan(@Param("limit") int limit);
 
-    @Select("select * from users limit #{limit}")
-    List<Users> selectList(@Param("limit") int limit);
 }
