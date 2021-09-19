@@ -10,13 +10,7 @@ import java.util.Random;
  * @create: 2021-09-18 14:47
  */
 public class URLUtils {
-    /**
-     * 根据MD5加密方式生成短链接
-     *
-     * @return List<Map < String, Object>>
-     * @author DingYongJun
-     * @date 2020/8/18
-     */
+    //根据MD5加密方式生成短链接
     public static String getShortURL(String URL) {
         Random random = new Random();
 
@@ -29,11 +23,11 @@ public class URLUtils {
                 "U", "V", "W", "X", "Y", "Z"
 
         };
-       int ln = chars.length;
+        int ln = chars.length;
         // 可以自定义生成 MD5 加密字符传前的混合 KEY
         String key = chars[random.nextInt(ln)] + chars[random.nextInt(ln)] + chars[random.nextInt(ln)] + chars[random.nextInt(ln)];
         // 对传入网址进行 MD5 加密
-        String hex = md5ByHex(key + URL);
+        String hex = Encrypt.md5(key + URL);
 
         String[] resUrl = new String[4];
         for (int i = 0; i < 4; i++) {
@@ -49,8 +43,8 @@ public class URLUtils {
                 long index = 0x0000003D & lHexLong;
                 // 把取得的字符相加
                 outChars.append(chars[(int) index]);
-                // 每次循环按位右移 5 位
-                lHexLong = lHexLong >> 4;
+                // 每次循环按位右移 3 位
+                lHexLong = lHexLong >> 3;
             }
             // 把字符串存入对应索引的输出数组
             resUrl[i] = outChars.toString();
@@ -61,33 +55,4 @@ public class URLUtils {
         return resUrl[j];
     }
 
-    /**
-     * MD5加密(32位大写)
-     *
-     * @return List<Map < String, Object>>
-     * @author DingYongJun
-     * @date 2020/8/18
-     */
-    public static String md5ByHex(String src) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] b = src.getBytes();
-            md.reset();
-            md.update(b);
-            byte[] hash = md.digest();
-            StringBuilder hs = new StringBuilder();
-            String stmp = "";
-            for (byte value : hash) {
-                stmp = Integer.toHexString(value & 0xFF);
-                if (stmp.length() == 1)
-                    hs.append("0").append(stmp);
-                else {
-                    hs.append(stmp);
-                }
-            }
-            return hs.toString().toUpperCase();
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }

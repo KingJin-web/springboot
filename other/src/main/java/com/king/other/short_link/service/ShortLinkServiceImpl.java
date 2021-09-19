@@ -1,5 +1,6 @@
 package com.king.other.short_link.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.king.other.short_link.bean.ShortLink;
 import com.king.other.short_link.mapper.ShortLinkMapper;
 import com.king.other.short_link.util.URLUtils;
@@ -25,10 +26,19 @@ public class ShortLinkServiceImpl {
     }
 
     public ShortLink addShortLink(String longLink, String url) {
+        url += "/short";
         ShortLink shortLink = new ShortLink();
         shortLink.setLongLink(longLink);
         shortLink.setShorts(URLUtils.getShortURL(longLink));
-        shortLink.setShortLink(url + shortLink.getShorts());
+        shortLink.setShortLink(url + "/" + shortLink.getShorts());
+        shortLinkMapper.insert(shortLink);
         return shortLink;
+    }
+
+    public  ShortLink getLongLink(String shorts) {
+        QueryWrapper<ShortLink> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("shorts", shorts);
+        return shortLinkMapper.selectOne(queryWrapper);
+
     }
 }

@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       timeout: 60000
-    context-path: /mybtis
+#    context-path: /mybtis
 
 logging:
   level:
