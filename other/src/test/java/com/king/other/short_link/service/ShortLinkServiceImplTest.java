@@ -1,7 +1,6 @@
 package com.king.other.short_link.service;
 
-import com.king.other.short_link.util.URLUtils;
-import org.junit.After;
+import com.king.other.short_link.util.URLUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class ShortLinkServiceImplTest {
     @Test
     public void setShortLinkMapper() {
         Map<String,Integer> map = new HashMap<>();
-        for (int i = 0; i < 100000; i++) {
-            String s = URLUtils.getShortURL("https://www.baidu.com/");
+        for (int i = 0; i < 1000000; i++) {
+            String s = URLUtil.getShortURL();
             map.put(s,map.getOrDefault(s,0) + 1);
         }
         System.out.println(map.size());

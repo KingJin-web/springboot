@@ -1,5 +1,6 @@
 package com.king.other.short_link.util;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,7 +14,6 @@ public class Encrypt {
 	 * 测试
 	 */
 	public static void main(String[] args) {
-
 		System.out.println(Encrypt.md5AndSha("a"));
 		//System.out.println(Encrypt.md5("a"));
 	}
@@ -71,17 +71,16 @@ public class Encrypt {
 		if (algorithmName == null || "".equals(algorithmName.trim())) {
 			algorithmName = "md5";
 		}
-		String encryptText = null;
 		try {
 			MessageDigest m = MessageDigest.getInstance(algorithmName);
-			m.update(inputText.getBytes("UTF8"));
-			byte s[] = m.digest();
+			m.update(inputText.getBytes(StandardCharsets.UTF_8));
+			byte[] s = m.digest();
 			// m.digest(inputText.getBytes("UTF8"));
 			return hex(s);
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		return encryptText;
+		return null;
 	}
 
 	/**
@@ -91,8 +90,8 @@ public class Encrypt {
 	 */
 	private static String hex(byte[] arr) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < arr.length; ++i) {
-			sb.append(Integer.toHexString((arr[i] & 0xFF) | 0x100).substring(1, 3));
+		for (byte b : arr) {
+			sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
 		}
 		return sb.toString();
 	}
