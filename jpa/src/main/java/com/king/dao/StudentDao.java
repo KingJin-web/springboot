@@ -28,7 +28,10 @@ public interface StudentDao extends JpaRepository<Student, Integer> {
     //
     List<Student> findFirstByAddressLike(String address);
 
+//    @Query("select * from Student  s where s.name=:name")
+//    List<Student> findStudent1(@Param("name") String name);
+
     @Query("from Student s where s.name=:name")
-    List<Student> findStudent(@Param("name") String name);
+    List<Student> findStudent2(@Param("name") String name);
 
 }
