@@ -23,5 +23,6 @@ public interface UserMapper extends BaseMapper<User> {
      */
     @Select("SELECT * FROM user WHERE sex = #{sex}")
     IPage<User> selectPageBySex(Page<?> page, String sex);
+
 }
 

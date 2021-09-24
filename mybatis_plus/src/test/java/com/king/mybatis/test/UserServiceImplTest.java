@@ -65,4 +65,9 @@ public class UserServiceImplTest {
         userService.changeUserById(user1);
     }
 
+//    public void test1(){
+//        userService.register()
+//    }
+
 }
+

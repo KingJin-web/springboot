@@ -21,8 +21,23 @@ import java.util.Map;
 @Service
 public class UserServiceImpl {
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
+
+    //register
+    public synchronized int  register(User user) throws Exception {
+        if (isEmpty(user.getName())) {
+            return userMapper.insert(user);
+        } else {
+            throw new Exception("此用户名已经被注册");
+        }
+    }
+
+    private boolean isEmpty(String name) {
+        QueryWrapper<User> uqw = new QueryWrapper<>();
+        uqw.eq("name", name);
+        return userMapper.selectCount(uqw) == 0;
+    }
 
     //添加一条数据
     public int add(User user) {
@@ -45,6 +60,7 @@ public class UserServiceImpl {
     public User queryById(User user) {
         return userMapper.selectById(user.getId());
     }
+
     //通过Id查询批量查询
     public List<User> queryByIds() {
         List<Integer> idList = new ArrayList<>();
@@ -52,6 +68,7 @@ public class UserServiceImpl {
         idList.add(11);
         return userMapper.selectBatchIds(idList);
     }
+
     //通过姓名模糊查询
     public List<User> queryByName1(String name) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();

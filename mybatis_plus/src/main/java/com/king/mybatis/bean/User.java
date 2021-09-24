@@ -31,6 +31,7 @@ public class User extends Model<User> {
     private String sex;
     private String pwd;
     private String email;
+    private Integer age;
     @Version
     private Long version;
 
