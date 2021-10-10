@@ -1,8 +1,11 @@
 package com.king.other.short_link.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -23,6 +26,8 @@ import javax.servlet.http.HttpSession;
  */
 @Configuration
 @EnableSwagger2  //启用swaggerr 注解解析器
+@EnableKnife4j //启用knife4j增强
+@Import(BeanValidatorPluginsConfiguration.class)
 public class Swagger2Config {
 
     // 是否开启swagger，正式环境一般是需要关闭的，可根据springboot的多环境配置进行设置

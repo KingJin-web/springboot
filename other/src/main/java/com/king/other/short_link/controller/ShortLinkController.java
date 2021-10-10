@@ -8,9 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +27,7 @@ public class ShortLinkController {
     ShortLinkServiceImpl shortLinkService;
 
     //生成分享链接
-    @RequestMapping(value = "/share.do")
+    @PostMapping(value = "/share.do")
     @ApiOperation(value = "长链转短链", tags ="测试接口1")
     @ApiImplicitParam(name = "longLink", value = "长链", dataType = "string", paramType = "query", example = "www.baidu.com", required = true)
     public Result shareLink(HttpServletRequest request, String longLink) {
@@ -42,9 +40,9 @@ public class ShortLinkController {
     }
 
     //实现短链跳转
-    @RequestMapping(value = "/short/{shortLink}")
+    @GetMapping(value = "/short/{shortLink}")
     @ApiOperation(value = "实现短链跳转", tags ="测试接口1")
-    @ApiImplicitParam(name = "shortLink", value = "短链", dataType = "string", paramType = "query", example = "NbI6qbyb", required = true)
+    @ApiImplicitParam(name = "shortLink", value = "短链", dataType = "string", paramType = "path", example = "NbI6qbyb", required = true)
     public void sendRedirect(HttpServletResponse response,  @PathVariable String shortLink) {
         ShortLink shorts = shortLinkService.getLongLink(shortLink);
         if (shorts != null) {
