@@ -90,4 +90,17 @@ public class LatchTest {
         System.err.println("=====执行时间：" + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + "豪秒");
         return endTime - startTime;
     }
+
+    StringBuilder stringBuilder = new StringBuilder();
+
+    @Test
+    public void a(){
+        String a = "ABCD";
+        String b = "ABCD";
+        System.out.println(a.hashCode());
+        System.out.println(a.chars().sum());
+        System.out.println(a.hashCode() == b.hashCode());
+        System.out.println(a == b);
+        System.out.println(true);
+    }
 }

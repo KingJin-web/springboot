@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 8080
   servlet:
     session:
       timeout: 60000
@@ -36,3 +36,6 @@ spring:
     #    url: jdbc:p6spy:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
+
+swagger:
+  enable: true
