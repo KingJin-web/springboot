@@ -9,6 +9,7 @@
 ## [springboot整合mybatis](mybatis)
 
 [SpringBoot整合mybatis(使用注解)](https://blog.csdn.net/qq_44737094/article/details/119063750)
+
 [SpringBoot整合mybatis(使用xml)](mybatis_xml)
 
 ## [springboot整合mybatis-plus](mybatis_plus)
