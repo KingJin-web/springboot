@@ -3,11 +3,13 @@
 ## [springboot整合jpa](jpa)
 
 [SpringBoot整合Spring Data JPA访问MySQL](https://blog.csdn.net/qq_44737094/article/details/119351179)
+
 [SpringBoot整合Spring Data JPA--进阶](https://blog.csdn.net/qq_44737094/article/details/120251959)
 
 ## [springboot整合mybatis](mybatis)
 
 [SpringBoot整合mybatis(使用注解)](https://blog.csdn.net/qq_44737094/article/details/119063750)
+[SpringBoot整合mybatis(使用xml)](mybatis_xml)
 
 ## [springboot整合mybatis-plus](mybatis_plus)
 
