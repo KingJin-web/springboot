@@ -19,3 +19,10 @@
 [SpringBoot整合mybatis-plus--进阶](https://blog.csdn.net/qq_44737094/article/details/120004420)
 
 ## [springboot 实现长链接转短链接](other/src/main/java/com/king/other/short_link)
+
+[springboot 实现长链接转短链接](https://blog.csdn.net/qq_44737094/article/details/120385258)
+
+
+## [SpringBoot 生成接口文档](other/src/main/java/com/king/other/short_link)
+
+[SpringBoot 生成美观的接口文档](https://blog.csdn.net/qq_44737094/article/details/120693603)
