@@ -18,6 +18,7 @@ mybatis:
   #开启驼峰命名
   configuration:
     map-underscore-to-camel-case: true
+
 #showSql
 logging:
   level:
