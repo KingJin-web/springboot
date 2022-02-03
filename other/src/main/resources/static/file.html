@@ -22,37 +22,48 @@
             <div class="panel-group" id="panel-906404">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-906404" href="#panel-element-337785">Collapsible Group Item #1</a>
+                        <a class="panel-title collapsed" data-toggle="collapse"
+                           data-parent="#panel-906404" href="#panel-element-337785">
+                            表单实现文件上传</a>
                     </div>
                     <div id="panel-element-337785" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="row clearfix">
                                 <div class="col-md-6 column">
-                                    <form role="form">
-
+                                    <form role="form" action="/upload" target="myIframe" method="post"
+                                          enctype="multipart/form-data">
+                                        Cannot resolve file 'upload'
                                         <div class="form-group">
-                                            <label for="exampleInputFile">File input</label><input type="file" id="exampleInputFile" />
+                                            <label for="exampleInputFile">表单单个文件上传</label>
+                                            <input type="file" id="exampleInputFile" name="file"
+                                                   value="请选择文件" multiple>
+
+
                                             <p class="help-block">
-                                                Example block-level help text here.
+
                                             </p>
                                         </div>
                                         <div class="checkbox">
-                                            <label><input type="checkbox" />Check me out</label>
-                                        </div> <button type="submit" class="btn btn-default">Submit</button>
+
+                                        </div>
+                                        <button type="submit" class="btn btn-default">上传</button>
                                     </form>
+
                                 </div>
                                 <div class="col-md-6 column">
-                                    <form role="form">
-
+                                    <form role="form" action="/uploads" target="myIframe" method="post"
+                                          enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputFile">File input</label><input type="file" id="exampleInputFiles" />
+                                            <label for="exampleInputFile">表单多个文件上传</label>
+                                            <input type="file" id="exampleInputFiles" name="files" value="请选择文件" multiple/>
                                             <p class="help-block">
-                                                Example block-level help text here.
+
                                             </p>
                                         </div>
                                         <div class="checkbox">
-                                            <label><input type="checkbox" />Check me out</label>
-                                        </div> <button type="submit" class="btn btn-default">Submit</button>
+                                            <label><input type="checkbox"/>Check me out</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -61,7 +72,8 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-906404" href="#panel-element-313746">Collapsible Group Item #2</a>
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-906404"
+                           href="#panel-element-313746">使用vue + axios 实现文件上传</a>
                     </div>
                     <div id="panel-element-313746" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -84,15 +96,7 @@
 
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <h2>
-                        Heading
-                    </h2>
-                    <p>
-                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                    </p>
-                    <p>
-                        <a class="btn" href="#">View details »</a>
-                    </p>
+                    <iframe id="myIframe" name="myIframe" class="iframes"></iframe>
                 </div>
             </div>
 

@@ -36,6 +36,10 @@ spring:
     #    url: jdbc:p6spy:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 
 swagger:
   enable: true

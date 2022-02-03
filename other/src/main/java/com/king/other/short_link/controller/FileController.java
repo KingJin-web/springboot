@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +36,8 @@ public class FileController {
 
     @PostMapping("/upload")
     @ApiOperation(value = "上传单个文件", tags = "测试接口2")
-    public String upload(MultipartFile uploadFile, HttpServletRequest req) {
+    public String upload(@RequestParam("file") MultipartFile uploadFile, HttpServletRequest req) {
+        System.out.println(uploadFile);
         if (!uploadFile.isEmpty()) {
             return saveFile(uploadFile);
         }
@@ -44,7 +46,7 @@ public class FileController {
 
     @PostMapping("/uploads")
     @ApiOperation(value = "上传多个文件", tags = "测试接口2")
-    public String upload(MultipartFile[] uploadFiles, HttpServletRequest req) {
+    public String upload(@RequestParam("files") MultipartFile[] uploadFiles, HttpServletRequest req) {
         if (uploadFiles.length > 0) {
             return saveFile(uploadFiles);
         }
@@ -55,7 +57,7 @@ public class FileController {
         StringBuilder sb = new StringBuilder();
         try {
             for (MultipartFile multipartFile : multipartFiles) {
-                multipartFile.transferTo(new File(filePath + multipartFile.getOriginalFilename()));
+                multipartFile.transferTo(new File(filePath ,multipartFile.getOriginalFilename()));
 
                 sb.append(filePath).append(multipartFile.getOriginalFilename()).append("\n");
             }
