@@ -19,7 +19,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    Example page header <small>Subtext for header</small>
+                    SpringBoot 使用表单或者vue实现文件上传 <small></small>
                 </h1>
             </div>
             <div class="panel-group" id="panel-906404">
@@ -35,19 +35,13 @@
                                 <div class="col-md-6 column">
                                     <form role="form" action="/file/upload" target="myIframe" method="post"
                                           enctype="multipart/form-data">
-                                        Cannot resolve file 'upload'
                                         <div class="form-group">
                                             <label for="exampleInputFile">表单单个文件上传</label>
                                             <input type="file" id="exampleInputFile" name="file"
-                                                   value="请选择文件" >
-
-
+                                                   value="请选择文件">
                                             <p class="help-block">
 
                                             </p>
-                                        </div>
-                                        <div class="checkbox">
-
                                         </div>
                                         <button type="submit" class="btn btn-default">上传</button>
                                     </form>
@@ -64,10 +58,7 @@
 
                                             </p>
                                         </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox"/>Check me out</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Submit</button>
+                                        <button type="submit" class="btn btn-default">上传</button>
                                     </form>
                                 </div>
                             </div>
@@ -85,14 +76,14 @@
                                 <div class="col-md-6 column">
                                     <input type="file" class="btn btn-default btn-block btn-primary" name="upload-file"
                                            id="upload-file" @change="uploadFile">
-<!--                                    <button type="button" class="btn btn-default btn-block btn-primary">-->
-<!--                                        上传</button>-->
+                                    <!--                                    <button type="button" class="btn btn-default btn-block btn-primary">-->
+                                    <!--                                        上传</button>-->
                                 </div>
                                 <div class="col-md-6 column">
                                     <input type="file" class="btn btn-default btn-block btn-primary" name="upload-file"
                                            id="upload-files" @change="uploadFiles" multiple>
-<!--                                    <button type="button" class="btn btn-block btn-primary btn-default">-->
-<!--                                        上传</button>-->
+                                    <!--                                    <button type="button" class="btn btn-block btn-primary btn-default">-->
+                                    <!--                                        上传</button>-->
                                 </div>
                             </div>
                             <div class="row clearfix">
@@ -119,7 +110,6 @@
     const v = new Vue({
         el: '#main',
         data: {
-            message: ''
         },
         methods: {
             //文件上传

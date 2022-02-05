@@ -1,27 +1,12 @@
-package com.king.other.short_link.controller;
+package com.king.other.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * @program: springboot
@@ -34,6 +19,7 @@ import java.util.UUID;
 @Api(value = "文件上传接口", tags = "测试接口2")
 public class FileController {
 
+    //默认上传到的路径
     private final String filePath = "F:\\A\\";
 
     @PostMapping("/upload")
@@ -55,11 +41,16 @@ public class FileController {
         return "上传失败!";
     }
 
+    /**
+     *
+     * @param multipartFiles
+     * @return 返回保存的路径
+     */
     public String saveFile(MultipartFile... multipartFiles) {
         StringBuilder sb = new StringBuilder();
         try {
             for (MultipartFile multipartFile : multipartFiles) {
-                multipartFile.transferTo(new File(filePath ,multipartFile.getOriginalFilename()));
+                multipartFile.transferTo(new File(filePath, multipartFile.getOriginalFilename()));
 
                 sb.append(filePath).append(multipartFile.getOriginalFilename()).append("\n");
             }
@@ -69,22 +60,5 @@ public class FileController {
         }
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        File file = new File("F:\\A\\");
-        //check file permissions for application user
-        System.out.println("File is readable? " + file.canRead());
-        System.out.println("File is writable? " + file.canWrite());
-        System.out.println("File is executable? " + file.canExecute());
-        //change file permissions for application user only
-        file.setReadable(false);
-        file.setWritable(false);
-        file.setExecutable(false);
-        //change file permissions for other users also
-        file.setReadable(true, false);
-        file.setWritable(true, false);
-        file.setExecutable(true, true);
-    }
-
 
 }
