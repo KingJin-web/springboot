@@ -25,7 +25,6 @@ public class FileController {
     @PostMapping("/upload")
     @ApiOperation(value = "上传单个文件", tags = "测试接口2")
     public String upload(@RequestParam("file") MultipartFile uploadFile, HttpServletRequest req) {
-        System.out.println(uploadFile);
         if (!uploadFile.isEmpty()) {
             return saveFile(uploadFile);
         }
