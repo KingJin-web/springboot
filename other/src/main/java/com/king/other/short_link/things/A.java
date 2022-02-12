@@ -1,4 +1,4 @@
-package com.king.other.things;
+package com.king.other.short_link.things;
 
 import java.applet.Applet;
 import java.awt.*;

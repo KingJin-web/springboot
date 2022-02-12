@@ -16,14 +16,14 @@ import java.io.IOException;
  */
 @RestController
 @RequestMapping("/file")
-@Api(value = "文件上传接口", tags = "测试接口2")
+@Api(value = "文件上传接口", tags = "文件上传接口")
 public class FileController {
 
     //默认上传到的路径
     private final String filePath = "F:\\A\\";
 
     @PostMapping("/upload")
-    @ApiOperation(value = "上传单个文件", tags = "测试接口2")
+    @ApiOperation(value = "上传单个文件", tags = "文件上传接口")
     public String upload(@RequestParam("file") MultipartFile uploadFile, HttpServletRequest req) {
         if (!uploadFile.isEmpty()) {
             return saveFile(uploadFile);
@@ -32,7 +32,7 @@ public class FileController {
     }
 
     @PostMapping("/uploads")
-    @ApiOperation(value = "上传多个文件", tags = "测试接口2")
+    @ApiOperation(value = "上传多个文件", tags = "文件上传接口")
     public String upload(@RequestParam("files") MultipartFile[] uploadFiles, HttpServletRequest req) {
         if (uploadFiles.length > 0) {
             return saveFile(uploadFiles);

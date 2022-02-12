@@ -1,4 +1,4 @@
-package com.king.other.short_link.vo;
+package com.king.other.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,4 +19,6 @@ public class Result {
     protected String message;
     @ApiModelProperty(value = "数据")
     protected Object data;
+    @ApiModelProperty(value = "数据量")
+    protected Integer count;
 }

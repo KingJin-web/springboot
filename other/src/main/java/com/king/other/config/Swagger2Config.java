@@ -1,4 +1,4 @@
-package com.king.other.short_link.config;
+package com.king.other.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.beans.factory.annotation.Value;
