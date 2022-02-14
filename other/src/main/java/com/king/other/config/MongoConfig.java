@@ -3,8 +3,15 @@ package com.king.other.config;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +40,21 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
                 .applyToClusterSettings(settings -> {
                     settings.hosts(hosts);
                 });
+    }
+
+
+    @Bean
+    public MappingMongoConverter mappingMongoConverter(MongoDatabaseFactory databaseFactory,
+                                                       MongoCustomConversions customConversions,
+                                                       MongoMappingContext mappingContext) {
+        MappingMongoConverter mmc = super.mappingMongoConverter(databaseFactory, customConversions, mappingContext);
+        mmc.setTypeMapper(defaultMongoTypeMapper());
+        return mmc;
+    }
+
+    @Bean
+    public MongoTypeMapper defaultMongoTypeMapper() {
+        return new DefaultMongoTypeMapper(null);
     }
 
 }
