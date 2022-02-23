@@ -1,45 +1,42 @@
 server:
+  application:
+    name: security
   port: 9090
   servlet:
     session:
       timeout: 60000
-#    context-path: /mybtis
+
 
 logging:
   level:
     root: warn
     com.king: info
     org.springframework: error
-  file:
-    name: ../log/mybatis-plus.log
+#  file:
+#    name: ../log/mybatis-plus.log
 
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
     map-underscore-to-camel-case: true
     # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
-    # TODO 添加如下配置
   global-config:
     db-config:
       logic-delete-field: flag  # 全局逻辑删除的实体字段名
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-
+  # 支持统配符 * 或者 ; 分割
+  typeEnumsPackage: com.king.mooc.entity.enums
 
 
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/mooc?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     #    url: jdbc:p6spy:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
 
-swagger:
-  enable: true
+
