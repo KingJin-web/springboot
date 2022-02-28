@@ -1,7 +1,7 @@
 server:
   application:
     name: security
-  port: 9090
+  port: 8080
   servlet:
     session:
       timeout: 60000
@@ -11,22 +11,23 @@ logging:
   level:
     root: warn
     com.king: info
-    org.springframework: error
+    org.springframework.security.web.DefaultSecurityFilterChain: info
+
 #  file:
 #    name: ../log/mybatis-plus.log
 
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
-    map-underscore-to-camel-case: true
-    # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
-  global-config:
-    db-config:
-      logic-delete-field: flag  # 全局逻辑删除的实体字段名
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  # 支持统配符 * 或者 ; 分割
-  typeEnumsPackage: com.king.mooc.entity.enums
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+#    map-underscore-to-camel-case: true
+#    # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
+#  global-config:
+#    db-config:
+#      logic-delete-field: flag  # 全局逻辑删除的实体字段名
+#      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+#  # 支持统配符 * 或者 ; 分割
+#  typeEnumsPackage: com.king.mooc.entity.enums
 
 
 
