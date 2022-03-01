@@ -1,6 +1,8 @@
 package com.king.security.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.king.security.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 /**
  * @program: springboot
@@ -8,6 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @author: King
  * @create: 2022-02-25 03:43
  */
-@Mapper
-public class UserMapper {
+
+public interface UserMapper  extends JpaRepository<User, Integer> {
 }

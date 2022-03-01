@@ -1,6 +1,4 @@
 server:
-  application:
-    name: security
   port: 8080
   servlet:
     session:
@@ -11,7 +9,7 @@ logging:
   level:
     root: warn
     com.king: info
-    org.springframework.security.web.DefaultSecurityFilterChain: info
+    org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: info
 
 #  file:
 #    name: ../log/mybatis-plus.log
@@ -34,10 +32,14 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mooc?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
-    #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    #    url: jdbc:p6spy:mysql://localhost:3306/mybits?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true #日志中显示sql语句
+    hibernate:
+      ddl-auto: update
 
 
