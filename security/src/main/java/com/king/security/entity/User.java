@@ -1,6 +1,7 @@
 package com.king.security.entity;
 
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
  * @create: 2022-02-25 03:41
  */
 @Entity
+@Builder
 @Data
 public class User {
     @Id
@@ -23,5 +25,10 @@ public class User {
     private String name;
     //密码
     private String password;
+    //角色
+    private Integer role;
 
+    public User() {
+
+    }
 }

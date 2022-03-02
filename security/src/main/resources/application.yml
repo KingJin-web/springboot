@@ -4,6 +4,22 @@ server:
     session:
       timeout: 60000
 
+spring:
+  security:
+    user:
+      name: admin
+      password: aaaa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: aaaa
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true #日志中显示sql语句
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:
@@ -29,17 +45,5 @@ logging:
 
 
 
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: aaaa
-  jpa:
-    database: MySQL
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true #日志中显示sql语句
-    hibernate:
-      ddl-auto: update
 
 
