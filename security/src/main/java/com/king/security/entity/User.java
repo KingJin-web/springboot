@@ -3,11 +3,11 @@ package com.king.security.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.persistence.criteria.Root;
 
 /**
  * @program: springboot
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 @Entity
 @Builder
 @Data
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +26,19 @@ public class User {
     private String name;
     //密码
     private String password;
-    //角色
-    private Integer role;
+    //角色 这个注解表示使用枚举类中的int
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;
 
     public User() {
 
+    }
+
+    //@builder默认用的是全参数构造函数  没有这个会报错 也可以加@AllArgsConstructor
+    public User(Long id, String name, String password, Role role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.role = role;
     }
 }

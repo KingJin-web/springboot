@@ -23,7 +23,7 @@ spring:
 
 logging:
   level:
-    root: warn
+    root: info
     com.king: info
     org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: info
 

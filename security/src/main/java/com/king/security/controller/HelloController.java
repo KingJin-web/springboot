@@ -1,5 +1,7 @@
 package com.king.security.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,5 +16,14 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(){
         return "Hello World!";
+    }
+
+    /**
+     * 获得用户登录信息
+     * @return
+     */
+    @RequestMapping("/info")
+    public Object info(){
+        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

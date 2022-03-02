@@ -4,6 +4,7 @@ import com.king.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
+
 /**
  * @program: springboot
  * @description:
@@ -12,4 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface UserMapper  extends JpaRepository<User, Integer> {
+    User findOneByName(String name);
 }

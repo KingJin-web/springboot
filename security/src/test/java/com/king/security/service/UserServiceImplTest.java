@@ -1,12 +1,11 @@
 package com.king.security.service;
 
-import org.junit.jupiter.api.Test;
+import com.king.security.entity.Role;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,10 +15,15 @@ public class UserServiceImplTest {
     private UserServiceImpl userService;
 
     @Test
-    void register() {
+    public void register() {
+        userService.register("root","aaaa", Role.ADMIN);
+        userService.register("user","aaaa", Role.USER);
+        userService.register("king","aaaa", Role.TEMP);
     }
 
     @Test
-    void registerByEncode() {
+    public void registerByEncode() {
+        userService.registerByEncode("user","aaaa",Role.USER);
     }
+
 }

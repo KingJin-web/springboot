@@ -1,12 +1,20 @@
 package com.king.security.service;
 
+import com.king.security.entity.Role;
 import com.king.security.entity.User;
 import com.king.security.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -16,7 +24,7 @@ import java.util.List;
  * @create: 2022-03-02 21:18
  */
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserDetailsService {
     @Autowired
     private UserMapper userMapper;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -29,8 +37,12 @@ public class UserServiceImpl {
      * @param pwd
      * @return
      */
-    public User register(String name, String pwd) {
-        return userMapper.save(User.builder().name(name).password(pwd).build());
+    public User register(String name, String pwd, Role role) {
+        if (isUserName(name)) {
+            System.out.println("此昵称已经被占用");
+            return null;
+        }
+        return userMapper.save(User.builder().name(name).password(pwd).role(role).build());
     }
 
     /**
@@ -40,9 +52,9 @@ public class UserServiceImpl {
      * @param pwd
      * @return
      */
-    public User registerByEncode(String name, String pwd) {
+    public User registerByEncode(String name, String pwd, Role role) {
         pwd = encoder.encode(pwd);
-        return userMapper.save(User.builder().name(name).password(pwd).build());
+        return userMapper.save(User.builder().name(name).password(pwd).role(role).build());
     }
 
     /**
@@ -58,17 +70,41 @@ public class UserServiceImpl {
     }
 
 
-    public boolean login(String name,String pwd) {
+    public boolean login(String name, String pwd) {
 
         em = Example.of(User.builder().name(name).password(pwd).build());
         List<User> users = userMapper.findAll(em);
         if (users.size() == 0) {
             return false;
         }
-        User user1 = users.get(0);
+        User user = users.get(0);
+        // 2. 设置角色
+        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getText());
+        grantedAuthorities.add(grantedAuthority);
 
-        return true;
+//        return new org.springframework.security.core.userdetails.User(login,
+//                userFromDatabase.getPassword(), grantedAuthorities);
+//        return true;
 //        return encoder.matches(pwd, user1.getPwd());
+        return true;
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = userMapper.findOneByName(name);
+        if (user == null){
+            throw new UsernameNotFoundException("此用户不存在");
+
+        }
+        // 2. 设置角色
+        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getText());
+        grantedAuthorities.add(grantedAuthority);
+
+        return new org.springframework.security.core.userdetails.User(name,
+                user.getPassword(), grantedAuthorities);
+    }
+
 
 }
