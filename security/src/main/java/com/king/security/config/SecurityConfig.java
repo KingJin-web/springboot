@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @create: 2022-03-02 11:53
  */
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter  {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserServiceImpl userService;
@@ -44,8 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
     }
 
     private PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();// 使用不使用加密算法保持密码
-//        return new BCryptPasswordEncoder();
+        //return NoOpPasswordEncoder.getInstance();// 使用不使用加密算法保持密码
+        return new BCryptPasswordEncoder();
     }
 
 
@@ -64,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -53,6 +53,10 @@ public class UserServiceImpl implements UserDetailsService {
      * @return
      */
     public User registerByEncode(String name, String pwd, Role role) {
+        if (isUserName(name)) {
+            System.out.println("此昵称已经被占用");
+            return null;
+        }
         pwd = encoder.encode(pwd);
         return userMapper.save(User.builder().name(name).password(pwd).role(role).build());
     }
@@ -64,30 +68,8 @@ public class UserServiceImpl implements UserDetailsService {
      * @return
      */
     public boolean isUserName(String name) {
-
         em = Example.of(User.builder().name(name).build());
         return userMapper.findAll(em).size() >= 1;
-    }
-
-
-    public boolean login(String name, String pwd) {
-
-        em = Example.of(User.builder().name(name).password(pwd).build());
-        List<User> users = userMapper.findAll(em);
-        if (users.size() == 0) {
-            return false;
-        }
-        User user = users.get(0);
-        // 2. 设置角色
-        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getText());
-        grantedAuthorities.add(grantedAuthority);
-
-//        return new org.springframework.security.core.userdetails.User(login,
-//                userFromDatabase.getPassword(), grantedAuthorities);
-//        return true;
-//        return encoder.matches(pwd, user1.getPwd());
-        return true;
     }
 
     @Override
@@ -95,9 +77,8 @@ public class UserServiceImpl implements UserDetailsService {
         User user = userMapper.findOneByName(name);
         if (user == null){
             throw new UsernameNotFoundException("此用户不存在");
-
         }
-        // 2. 设置角色
+
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRole().getText());
         grantedAuthorities.add(grantedAuthority);

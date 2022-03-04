@@ -16,14 +16,16 @@ public class UserServiceImplTest {
 
     @Test
     public void register() {
-        userService.register("root","aaaa", Role.ADMIN);
+        userService.register("admin","aaaa", Role.ADMIN);
         userService.register("user","aaaa", Role.USER);
         userService.register("king","aaaa", Role.TEMP);
     }
 
     @Test
     public void registerByEncode() {
-        userService.registerByEncode("user","aaaa",Role.USER);
+        userService.registerByEncode("admin1","aaaa", Role.ADMIN);
+        userService.registerByEncode("user1","aaaa", Role.USER);
+        userService.registerByEncode("king1","aaaa", Role.TEMP);
     }
 
 }
