@@ -11,7 +11,7 @@ spring:
       password: aaaa
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: aaaa
   jpa:
@@ -23,7 +23,7 @@ spring:
 
 logging:
   level:
-    root: info
+    root: warn
     com.king: info
     org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration: info
 

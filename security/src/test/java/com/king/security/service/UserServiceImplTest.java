@@ -23,9 +23,9 @@ public class UserServiceImplTest {
 
     @Test
     public void registerByEncode() {
-        userService.registerByEncode("admin1","aaaa", Role.ADMIN);
-        userService.registerByEncode("user1","aaaa", Role.USER);
-        userService.registerByEncode("king1","aaaa", Role.TEMP);
+        userService.registerByEncode("admin","aaaa", Role.ADMIN);
+        userService.registerByEncode("user","aaaa", Role.USER);
+        userService.registerByEncode("king","aaaa", Role.TEMP);
     }
 
 }

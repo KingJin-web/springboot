@@ -3,13 +3,16 @@ package com.king.security.config;
 import com.king.security.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @program: springboot
@@ -61,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .httpBasic();
 //    }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -74,5 +78,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutUrl("/logout");
     }
+
+    //静态资源配置
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //swagger2所需要用到的静态资源，允许访问
+        web.ignoring().antMatchers("/swagger/**")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/webjars/**")
+                .antMatchers("/v2/**")
+                .antMatchers("/v2/api-docs-ext/**")
+                .antMatchers("/swagger-resources/**")
+                .antMatchers("/doc.html");
+    }
+
+
 
 }
