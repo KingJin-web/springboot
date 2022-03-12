@@ -8,13 +8,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="lib/css/admin.css" media="all">
-    <link rel="stylesheet" href="lib/css/login.css" media="all">
     <script type='text/javascript' src='lib/jquery-3.5.1.js'></script>
     <script type="text/javascript" src="lib/vue.js"></script>
     <script type="text/javascript" src="lib/axios.js"></script>
     <script type="text/javascript" src="layui/layui.js"></script>
-    <link href="lib/css/index.css" rel="stylesheet">
 </head>
 <body>
 
@@ -59,9 +56,9 @@
                     </div>
                     <div class="layui-col-xs5">
                         <div style="margin-left: 10px;">
-                            <img src="/tmp/api/verify/login.png" class="layadmin-user-login-codeimg"
+                            <img src="/login.png" class="layadmin-user-login-codeimg"
                                  id="LAY-user-get-vercode"
-                                 onclick="this.src='/tmp/api/verify/login.png?date=' + new Date(); time = 60">
+                                 onclick="this.src='/login.png?date=' + new Date(); time = 60">
                             <!--                            <span id="timer">00秒</span>-->
                         </div>
                     </div>
@@ -101,11 +98,13 @@
         },
         methods: {
             login: function () {
-                let url = "/api/user/login.do";
+                let url = "/api/login.do";
                 let param = new URLSearchParams()
-                param.append('s', this.name)
+                //   "username": username,
+                //"password": password
+                param.append('username', this.name)
                 param.append('password', this.password)
-                param.append('validate_code', this.validateCode);
+                param.append('login_code', this.validateCode);
                 console.log(this.validateCode)
                 axios({
                     method: 'post',

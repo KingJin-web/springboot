@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @RestController()
-@RequestMapping("/api/verify")
 @Api(value = "图形验证码接口", tags = "图形验证码接口")
 public class VerifyCodeController {
 
@@ -22,6 +21,6 @@ public class VerifyCodeController {
     @GetMapping(value = "/login.png")
     public void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        session.setAttribute("index_code", VerifyCodeGen.outputImage(resp));
+        session.setAttribute("login_code", VerifyCodeGen.outputImage(resp));
     }
 }

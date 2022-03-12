@@ -1,16 +1,20 @@
 package com.king.security.config;
 
+
 import com.king.security.service.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -21,10 +25,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @create: 2022-03-02 11:53
  */
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserServiceImpl userService;
+
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -65,19 +72,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .httpBasic()
-                .and()
-                .logout().logoutUrl("/logout");
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .httpBasic()
+//                .and()
+//                .logout().logoutUrl("/logout");
+//    }
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //静态资源配置
     @Override
@@ -89,9 +98,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/**")
                 .antMatchers("/v2/api-docs-ext/**")
                 .antMatchers("/swagger-resources/**")
-                .antMatchers("/doc.html");
+                .antMatchers("/doc.html")
+
+                .antMatchers("/lib/**")
+                .antMatchers("/layer/**")
+                .antMatchers("/layui/**")
+                .antMatchers("/layui/css/**")
+                .antMatchers("/login.html");
+
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+    }
 
 
 }

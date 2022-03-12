@@ -3,8 +3,6 @@ package com.king.security.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +25,8 @@ import java.util.List;
 @Builder
 @Data
 public class User implements Serializable, UserDetails {
+
+    private static final long serialVersionUID = 3562500829301152222L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;//主键自增

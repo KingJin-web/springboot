@@ -3,6 +3,8 @@ package com.king.security.service;
 import com.king.security.entity.Role;
 import com.king.security.entity.User;
 import com.king.security.mapper.UserMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +29,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserDetailsService {
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private UserMapper userMapper;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -80,7 +83,7 @@ public class UserServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("此用户不存在");
         }
-
+        logger.info("{}登录了", user);
         return user;
     }
 
