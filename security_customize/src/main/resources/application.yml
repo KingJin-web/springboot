@@ -1,0 +1,21 @@
+
+# \u5E94\u7528\u540D\u79F0
+spring:
+  application:
+    name: security
+server:
+  port: 9090
+  servlet:
+    session:
+      timeout: 60000
+
+logging:
+  level:
+    root: warn
+    com.king: info
+    org.springframework: error
+  file:
+    name: /security.log
+swagger:
+  enable: true
+
