@@ -31,8 +31,19 @@ public class UserController {
         return "Hello User!";
     }
 
+    /**
+     * 获得用户登录信息
+     *
+     * @return
+     */
+    @ApiOperation(value = "获得用户登录信息", httpMethod = "GET")
+    @GetMapping("/info")
+    public Object info() {
+        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
     @PostMapping(value = "/register.do")
-    @ApiOperation(value = "获取用户列表", httpMethod = "POST")
+    @ApiOperation(value = "用户注册", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "用户名", dataType = "string", paramType = "query", example = "lihailin9073", required = true),
             @ApiImplicitParam(name = "pwd1", value = "登录密码", dataType = "string", paramType = "query", example = "123456", required = true),
@@ -50,14 +61,5 @@ public class UserController {
     }
 
 
-    /**
-     * 获得用户登录信息
-     *
-     * @return
-     */
-    @ApiOperation(value = "获取用户列表", httpMethod = "GET")
-    @GetMapping("/info")
-    public Object info() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+
 }

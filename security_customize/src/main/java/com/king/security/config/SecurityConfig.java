@@ -4,8 +4,6 @@ import com.king.security.config.login.DefaultAuthenticationFailureHandler;
 import com.king.security.config.login.DefaultAuthenticationSuccessHandler;
 import com.king.security.config.login.LoginFilter;
 import com.king.security.service.UserServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,19 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @program: springboot
@@ -38,8 +27,6 @@ import java.util.List;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private UserServiceImpl userService;
     @Autowired
@@ -71,7 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //swagger2所需要用到的静态资源，允许访问
-        LOGGER.info("configure");
         web.ignoring().antMatchers("/swagger/**")
                 .antMatchers("/swagger-ui.html")
                 .antMatchers("/webjars/**")
@@ -98,6 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //关闭跨域保护
         http.csrf().disable();
+        //验证码过滤器
         http.addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class);
         //放行验证码
         http.authorizeRequests().antMatchers("/login_code.png").permitAll();
@@ -106,9 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(defaultAuthenticationSuccessHandler)
                 .failureHandler(defaultAuthenticationFailureHandler).permitAll();
         http.authorizeRequests().anyRequest().fullyAuthenticated();
+        http.logout().logoutUrl("logout.do");
 
     }
-
-
 
 }

@@ -1,11 +1,9 @@
 package com.king.security.config.login;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @program: springboot
@@ -56,9 +53,10 @@ public class LoginFilter extends OncePerRequestFilter {
         if (StringUtils.isEmpty(code)) {
             throw new ValidateCodeException("验证码不能为空！");
         }
-        if ("null".equals(session_Code)) {
+        if (StringUtils.isEmpty(session_Code)) {
             throw new ValidateCodeException("验证码已经失效！");
-        } else if (!session_Code.equalsIgnoreCase(code)) {
+        }
+        if (!session_Code.equalsIgnoreCase(code)) {
             throw new ValidateCodeException("验证码输入错误！");
         }
 
