@@ -1,13 +1,29 @@
 
 # \u5E94\u7528\u540D\u79F0
 spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
   application:
     name: security
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: aaaa
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true #\u65E5\u5FD7\u4E2D\u663E\u793Asql\u8BED\u53E5
+    hibernate:
+      ddl-auto: update
 server:
   port: 9090
   servlet:
     session:
       timeout: 60000
+
 
 logging:
   level:

@@ -1,0 +1,177 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>登录页面</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="/login" method="post">-->
+<!--  <label>-->
+<!--    <input name="username" value="admin"><br>-->
+<!--    <input name="password" value="aaaa"><br>-->
+<!--  </label><br>-->
+
+<!--  <input type="submit" value="登录">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>登入 - 刻课公开课</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="lib/css/admin.css" media="all">
+  <link rel="stylesheet" href="lib/css/login.css" media="all">
+  <script type='text/javascript' src='lib/jquery-3.5.1.js'></script>
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="lib/axios.js"></script>
+  <script type="text/javascript" src="layui/layui.js"></script>
+  <link href="lib/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+
+  <div class="layadmin-user-login-main" id="main">
+
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <div class="alert alert-primary" role="alert">
+        <h2>kk网课 登录</h2>
+      </div>
+      <div class="alert alert-light" role="alert">
+        <div style="text-align:center ; margin: 0 auto;">
+          一款网络课程在线学习平台
+        </div>
+      </div>
+
+    </div>
+    <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-username"
+               for="LAY-user-login-username"></label>
+        <input v-model="name" type="text" name="username" id="LAY-user-login-username" lay-verify="required"
+               placeholder="用户名" class="layui-input">
+      </div>
+      <div class="layui-form-item">
+        <label class="layadmin-user-login-icon layui-icon layui-icon-password"
+               for="LAY-user-login-password"></label>
+        <input v-model="password" type="password" name="password" id="LAY-user-login-password"
+               lay-verify="required"
+               placeholder="密码" class="layui-input">
+      </div>
+
+      <div class="layui-form-item">
+        <div class="layui-row">
+          <div class="layui-col-xs7">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"
+                   for="LAY-user-login-vercode"></label>
+            <input v-model="validateCode" type="text" name="vercode" id="LAY-user-login-vercode"
+                   lay-verify="required" placeholder="验证码  点击图片刷新" class="layui-input">
+
+          </div>
+          <div class="layui-col-xs5">
+            <div style="margin-left: 10px;">
+              <img src="/login_code.png" class="layadmin-user-login-codeimg"
+                   id="LAY-user-get-vercode"
+                   onclick="this.src='/login_code.png?date=' + new Date(); time = 60">
+              <!--                            <span id="timer">00秒</span>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-form-item" style="margin-bottom: 20px;">
+        <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
+        <a href="forget.html" class="layadmin-user-jump-change layadmin-link"
+           style="margin-top: 7px;">忘记密码？</a>
+      </div>
+      <div class="layui-form-item">
+        <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit"
+                @click="login">登
+          入
+        </button>
+      </div>
+
+      <div class="layui-trans layui-form-item layadmin-user-login-other">
+        <label>社交账号登入</label>
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-wechat"></i></a>
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-weibo"></i></a>
+        <a href="register.html" class="layadmin-user-jump-change layadmin-link">注册帐号</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="lib/Popup.js" type="text/javascript"></script>
+<script type="text/javascript">
+  const app = new Vue({
+    el: "#main",
+    data: {
+      name: "",
+      password: "",
+      validateCode: ""
+    },
+    methods: {
+      login: function (message) {
+        let url = "/api/user/login.do";
+        let param = new URLSearchParams()
+        param.append('username', this.name)
+        param.append('password', this.password)
+        param.append('login_code', this.validateCode);
+        console.log(this.validateCode)
+        axios({
+          method: 'post',
+          url: url,
+          data: param
+        }).then(function (res) {
+          if (res.data.code === 1) {
+            alertLayer(res.data.msg,"index.html")
+          } else {
+            alertMy(res.data.msg)
+          }
+          console.log(res);
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+
+      }
+    }
+  });
+</script>
+
+<script>
+
+  //加载模块
+  let layer;
+  layui.use(function () { //亦可加载特定模块：layui.use(['layer', 'laydate', function(){
+    //得到各种内置组件
+    layer = layui.layer //弹层
+            , laypage = layui.laypage //分页
+            , laydate = layui.laydate //日期
+            , table = layui.table //表格
+            , carousel = layui.carousel //轮播
+            , upload = layui.upload //上传
+            , element = layui.element //元素操作
+            , slider = layui.slider //滑块
+            , dropdown = layui.dropdown //下拉菜单
+
+    //向世界问个好
+    //layer.msg('Hello World');
+  });
+</script>
+</body>
+</html>
