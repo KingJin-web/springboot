@@ -14,21 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class HelloController {
     @RequestMapping("login")
-    public String openLogin(){
+    public String openLogin() {
         return "login.html";
-    }
-
-    @RequestMapping("/hello")
-    public String hello(){
-        return "Hello World!";
-    }
-
-    /**
-     * 获得用户登录信息
-     * @return
-     */
-    @RequestMapping("/info")
-    public Object info(){
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
