@@ -15,4 +15,5 @@ public class HelloController {
     public String openLogin() {
         return "login.html";
     }
+
 }

@@ -1,11 +1,16 @@
 package com.king.security.controller;
 
 
+import com.king.security.entity.Role;
+import com.king.security.service.UserServiceImpl;
+import com.king.security.util.MyException;
+import com.king.security.util.StringUtils;
 import com.king.security.vo.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +29,11 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/user")
 @PreAuthorize("hasAnyRole('ADMIN','USER')")
-@Api(value = "用户操作接口",tags = "用户操作接口")
+@Api(value = "用户操作接口", tags = "用户操作接口")
 public class UserController {
+    @Autowired
+    private UserServiceImpl userService;
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello User!";
@@ -52,14 +60,24 @@ public class UserController {
             @ApiImplicitParam(name = "validate_code", value = "注册验证码", dataType = "string", paramType = "query", example = "3679", required = true)
 
     })
-    public ResultObj register(String name, String pwd1, String pwd2, String email, String validate_code) {
-        ResultObj resultObj = new ResultObj();
-
-
-        return resultObj;
-
+    public ResultObj register(String name, String pwd1, String pwd2, String phoneNumber, String validate_code) {
+        try {
+            //繁琐的验证
+            // 密码不能为空且一样
+            StringUtils.pwdCheckNull(pwd1, pwd2);
+            StringUtils.nameIsOk(name);
+            if (userService.isUserName(name)) {
+                return ResultObj.error("用户名已经被使用！");
+            }
+            StringUtils.isPhone(phoneNumber);
+            return ResultObj.ok(userService.registerByEncode(name, pwd1, phoneNumber, Role.USER));
+        } catch (MyException e) {
+            return ResultObj.error(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultObj.error(e.getMessage());
+        }
     }
-
 
 
 }

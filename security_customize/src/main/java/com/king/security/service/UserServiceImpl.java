@@ -34,12 +34,8 @@ public class UserServiceImpl implements UserDetailsService {
      * @param pwd
      * @return
      */
-    public User register(String name, String pwd, Role role) {
-        if (isUserName(name)) {
-            System.out.println("此昵称已经被占用");
-            return null;
-        }
-        return userMapper.save(User.builder().name(name).password(pwd).role(role).build());
+    public User register(String name, String pwd,String phone, Role role) {
+        return userMapper.save(User.builder().name(name).phone(Long.parseLong(phone)).password(pwd).role(role).build());
     }
 
     /**
@@ -49,13 +45,10 @@ public class UserServiceImpl implements UserDetailsService {
      * @param pwd
      * @return
      */
-    public User registerByEncode(String name, String pwd, Role role) {
-        if (isUserName(name)) {
-            System.out.println("此昵称已经被占用");
-            return null;
-        }
+    public User registerByEncode(String name, String pwd,String phone, Role role) {
         pwd = encoder.encode(pwd);
-        return userMapper.save(User.builder().name(name).password(pwd).role(role).build());
+        return userMapper.save(User.builder().name(name).phone(Long.parseLong(phone)).password(pwd).role(role).build());
+
     }
 
     /**
