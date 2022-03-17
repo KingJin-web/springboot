@@ -33,7 +33,7 @@ public class TxSmsServiceImpl {
      * @param phoneNumber 电话号码
      * @param smsCode     验证码
      */
-    private void sendSmsCode(String phoneNumber, String smsCode) {
+    public void sendSmsCode(String phoneNumber, String smsCode) {
         try {
             Credential cred = new Credential(secretId, secretKey);
             HttpProfile httpProfile = new HttpProfile();
