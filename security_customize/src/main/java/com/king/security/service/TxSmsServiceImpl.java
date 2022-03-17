@@ -27,6 +27,11 @@ public class TxSmsServiceImpl {
     @Value(value = "${sendSms.TemplateId}")
     private String TemplateId;
 
+    //更改短信模板id
+    public void setTemplateId(String templateId) {
+        TemplateId = templateId;
+    }
+
     /**
      * 发送短信
      *
@@ -49,7 +54,7 @@ public class TxSmsServiceImpl {
             req.setPhoneNumberSet(new String[]{phoneNumber});
             req.setSmsSdkAppId(SmsSdkAppId);
             req.setSignName("花草信息个人网");
-            req.setTemplateId("TemplateId");
+            req.setTemplateId(TemplateId);
 
             String[] templateParamSet1 = {smsCode, "30"};
             req.setTemplateParamSet(templateParamSet1);

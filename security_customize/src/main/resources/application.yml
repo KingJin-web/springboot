@@ -32,6 +32,12 @@ logging:
     org.springframework: error
   file:
     name: /security.log
+
 swagger:
   enable: true
 
+sendSms:
+  TemplateId:
+  SmsSdkAppId:
+  secretKey:
+  secretId:
