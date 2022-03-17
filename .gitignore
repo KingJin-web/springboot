@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+*.properties
 .idea
 *.iws
 *.iml
