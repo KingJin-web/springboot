@@ -35,7 +35,9 @@ public class ResultObj {
     public static ResultObj error(String msg) {
         return error(0, msg);
     }
-
+    public static ResultObj error(Exception msg) {
+        return error(0, msg.getMessage());
+    }
     public static ResultObj error(int code, String msg) {
         ResultObj r = new ResultObj();
         r.code = code;

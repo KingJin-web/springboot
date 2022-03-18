@@ -32,7 +32,7 @@ public class LoginFilter extends OncePerRequestFilter {
                                     FilterChain chain) throws ServletException, IOException {
         //如果是 登录请求 则执行
         if ((request.getMethod().equalsIgnoreCase("post") &&
-                request.getRequestURI().endsWith("login.do"))) {
+                request.getRequestURI().endsWith("/login.do"))) {
             try {
                 validate(request, response);
             } catch (ValidateCodeException e) {

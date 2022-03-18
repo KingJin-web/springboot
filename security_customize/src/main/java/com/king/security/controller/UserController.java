@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @program: springboot
@@ -28,12 +30,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/api/user")
-@PreAuthorize("hasAnyRole('ADMIN','USER')")
 @Api(value = "用户操作接口", tags = "用户操作接口")
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/hello")
     public String hello() {
         return "Hello User!";
@@ -56,21 +58,32 @@ public class UserController {
             @ApiImplicitParam(name = "name", value = "用户名", dataType = "string", paramType = "query", example = "lihailin9073", required = true),
             @ApiImplicitParam(name = "pwd1", value = "登录密码", dataType = "string", paramType = "query", example = "123456", required = true),
             @ApiImplicitParam(name = "pwd2", value = "确认密码", dataType = "string", paramType = "query", example = "123456", required = true),
-            @ApiImplicitParam(name = "email", value = "邮箱", dataType = "string", paramType = "query", example = "jinpeng.qmail@qq.com", required = true),
-            @ApiImplicitParam(name = "validate_code", value = "注册验证码", dataType = "string", paramType = "query", example = "3679", required = true)
+            @ApiImplicitParam(name = "phone", value = "phone", dataType = "string", paramType = "query", example = "13788888888", required = true),
+            @ApiImplicitParam(name = "registerCode", value = "注册验证码", dataType = "string", paramType = "query", example = "3679", required = true)
 
     })
-    public ResultObj register(String name, String pwd1, String pwd2, String phoneNumber, String validate_code) {
+    public ResultObj register(String name, String pwd1, String pwd2, String phone, String registerCode, HttpServletRequest request) {
         try {
-            //繁琐的验证
+
             // 密码不能为空且一样
             StringUtils.pwdCheckNull(pwd1, pwd2);
+            //用户名规范
             StringUtils.nameIsOk(name);
             if (userService.isUserName(name)) {
                 return ResultObj.error("用户名已经被使用！");
             }
-            StringUtils.isPhone(phoneNumber);
-            return ResultObj.ok(userService.registerByEncode(name, pwd1, phoneNumber, Role.USER));
+            //电话号码规范
+            StringUtils.isPhone(phone);
+
+            HttpSession session = request.getSession();
+            //获取存在session的验证码
+            String sessionCode = (String) session.getAttribute("code");
+            if (sessionCode != null && sessionCode.equals(registerCode)) {
+                return ResultObj.ok(userService.registerByEncode(name, pwd1, phone, Role.USER));
+            } else {
+                return ResultObj.error("验证码错误！");
+            }
+
         } catch (MyException e) {
             return ResultObj.error(e.getMessage());
         } catch (Exception e) {

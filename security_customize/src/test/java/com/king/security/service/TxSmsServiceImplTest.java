@@ -1,5 +1,6 @@
 package com.king.security.service;
 
+import com.king.security.util.MyException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class TxSmsServiceImplTest  {
     @Autowired
     private TxSmsServiceImpl txSmsService;
     @Test
-    public void sendSms(){
+    public void sendSms() throws MyException {
         txSmsService.sendSmsCode("19973653797","123456");
     }
 

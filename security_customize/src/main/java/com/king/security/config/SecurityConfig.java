@@ -71,6 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/layui/**")
                 .antMatchers("/layui/css/**")
                 .antMatchers("/login.html")
+                .antMatchers("/register.html")
+                .antMatchers("/agreement.html")
                 .antMatchers("/index.html");
 
     }
@@ -87,7 +89,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //验证码过滤器
         http.addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class);
         //放行验证码
-        http.authorizeRequests().antMatchers("/login_code.png").permitAll();
+        http.authorizeRequests().antMatchers("/login_code.png",
+                "/api/user/register.do",
+                "/api/code/sendSms.do",
+                "/register").permitAll();
         // 指定指定要的登录页面
         http.formLogin().loginPage("/login").loginProcessingUrl("/api/user/login.do")
                 .successHandler(defaultAuthenticationSuccessHandler)

@@ -36,8 +36,10 @@ logging:
 swagger:
   enable: true
 
-sendSms:
-  TemplateId:
-  SmsSdkAppId:
-  secretKey:
-  secretId:
+#sendSms:
+#  SecretId:  你的账号API 密钥id
+#  SecretKey: 你的账号API 密钥
+#  SmsSdkAppId: 你的短信应用id
+#  TemplateId: 你的短信模板id
+
+

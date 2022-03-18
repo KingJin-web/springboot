@@ -16,4 +16,9 @@ public class HelloController {
         return "login.html";
     }
 
+    @RequestMapping("/register")
+    public String openRegister() {
+        return "register.html";
+    }
+
 }
