@@ -10,6 +10,7 @@
 ### [SpringBoot 生成接口文档](other/src/main/java/com/king/other/short_link)
 ## [SpringBoot整合Spring Security](security)
 ## [SpringBoot整合Spring Security实现自定义页面以及验证码登录](security_customize)
+## [SpringBoot登录注册demo](security_customize)
 # 对应文章
 ## [SpringBoot整合Spring Data JPA访问MySQL](https://blog.csdn.net/qq_44737094/article/details/119351179)
 ## [SpringBoot整合Spring Data JPA--进阶](https://blog.csdn.net/qq_44737094/article/details/120251959)
