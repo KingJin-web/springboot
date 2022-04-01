@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserDetailsService {
      * @param pwd
      * @return
      */
-    public User register(String name, String pwd,String phone, Role role) {
+    public User register(String name, String pwd, String phone, Role role) {
         return userMapper.save(User.builder().name(name).phone(Long.parseLong(phone)).password(pwd).role(role).build());
     }
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserDetailsService {
      * @param pwd
      * @return
      */
-    public User registerByEncode(String name, String pwd,String phone, Role role) {
+    public User registerByEncode(String name, String pwd, String phone, Role role) {
         pwd = encoder.encode(pwd);
         return userMapper.save(User.builder().name(name).phone(Long.parseLong(phone)).password(pwd).role(role).build());
 
