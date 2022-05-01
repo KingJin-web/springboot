@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传测试</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.staticfile.org/vue/2.2.2/vue.js"></script>
+        <script src="https://cdn.staticfile.org/axios/0.18.0/axios.js"></script>
+
+
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    Example page header <small>Subtext for header</small>
+                </h1>
+            </div>
+            <div class="panel-group" id="panel-906404">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse"
+                           data-parent="#panel-906404" href="#panel-element-337785">
+                            表单实现文件上传</a>
+                    </div>
+                    <div id="panel-element-337785" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="row clearfix">
+                                <div class="col-md-6 column">
+                                    <form role="form" action="/file/upload" target="myIframe" method="post"
+                                          enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">表单单个文件上传</label>
+                                            <input type="file" id="exampleInputFile" name="file" value="请选择文件" multiple>
+                                            <p class="help-block">
+                                            </p>
+                                        </div>
+                                        <div class="checkbox">
+
+                                        </div>
+                                        <button type="submit" class="btn btn-default">上传</button>
+                                    </form>
+
+
+                                    <form role="form" action="/file/uploads" target="myIframe" method="post"
+                                          enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">表单多个文件上传</label>
+                                            <input type="file" id="exampleInputFiles" name="files" value="请选择文件"
+                                                   multiple/>
+                                            <p class="help-block">
+                                            </p>
+                                        </div>
+                                        <div class="checkbox">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">上传</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-906404"
+                           href="#panel-element-313746">使用vue + axios 实现文件上传</a>
+                    </div>
+                    <div id="panel-element-313746" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="row clearfix">
+                                <div class="col-md-6 column">
+                                    <input type="file" class="layui-btn" name="upload-file"
+                                           id="upload-file" @change="uploadFile">
+
+                                    <button type="button" class="btn btn-default btn-block btn-primary">上传</button>
+                                </div>
+                                <div class="col-md-6 column">
+                                    <button type="button" class="btn btn-block btn-primary btn-default">上传</button>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h3>
+                        程序接口返回参数显示 <small></small>
+                    </h3>
+                    <iframe id="myIframe" name="myIframe" class="iframes" v-text="message"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<script type="text/javascript">
+    const v = new Vue({
+        el: '#main',
+        data: {
+            message: ''
+        },
+        methods: {
+            //文件上传
+            uploadFile: function (e) {
+                var file = e.target.files[0];
+                var formdata = new FormData()
+                formdata.append("file", file)
+                formdata.append("uploadPath", this.path)
+                console.log("文件", formdata);
+                axios.post(
+                    '/file/upload',
+                    formdata,
+                    {headers: {'Content-Type': 'multipart/form-data'}}
+                ).then(function (res) {
+                    console.log(res.data)
+                })
+            },
+        }
+    });
+</script>
+
+</body>
+</html>
