@@ -11,6 +11,7 @@
 ## [SpringBoot整合Spring Security](security)
 ## [SpringBoot整合Spring Security实现自定义页面以及验证码登录](security_customize)
 ## [SpringBoot登录注册demo](security_customize)
+## [SpringBoot对象存储操作](oss)
 # 对应文章
 ## [SpringBoot整合Spring Data JPA访问MySQL](https://blog.csdn.net/qq_44737094/article/details/119351179)
 ## [SpringBoot整合Spring Data JPA--进阶](https://blog.csdn.net/qq_44737094/article/details/120251959)
@@ -23,3 +24,4 @@
 ## [SpringBoot整合MongoDB并去掉_class字段](https://blog.csdn.net/qq_44737094/article/details/122903542)
 ## [SpringBoot整合Spring Security](https://blog.csdn.net/qq_44737094/article/details/123173853)
 ## [SpringBoot整合Spring Security实现自定义页面以及验证码登录](https://blog.csdn.net/qq_44737094/article/details/123462481)
+## [Spring Boot 使用七牛云存储图片](https://blog.csdn.net/qq_44737094/article/details/124525952)
