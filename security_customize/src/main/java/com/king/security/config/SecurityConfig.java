@@ -106,8 +106,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //开启记住我功能
         http.rememberMe().rememberMeParameter("rememberMe");
-        //开启session
-        http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(false).sessionRegistry(sessionRegistry());
+
         //退出登录
         http.logout().logoutUrl("logout.do")
                 .logoutSuccessUrl("/login")

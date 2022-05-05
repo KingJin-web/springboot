@@ -1,5 +1,4 @@
 
-# \u5E94\u7528\u540D\u79F0
 spring:
   mvc:
     view:
@@ -19,7 +18,7 @@ spring:
     hibernate:
       ddl-auto: update
 server:
-  port: 9090
+  port: 8080
   servlet:
     session:
       timeout: 60000

@@ -30,6 +30,8 @@ public class DefaultAuthenticationFailureHandler extends SimpleUrlAuthentication
                                         AuthenticationException e) throws IOException,
             ServletException {
         logger.info("login in failure : " + e.getMessage());
+        e.printStackTrace();
+        logger.info("login in failure : " + e.getClass().getCanonicalName());
         ResultObj resultObj = new ResultObj();
         if (e instanceof LockedException) {
             resultObj = ResultObj.error("账户被锁定，登录失败！");
