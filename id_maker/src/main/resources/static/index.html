@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试ID生成</title>
+</head>
+<body>
+<div id="getId">
+    节点名称:<input type="text" v-model="nodeName" name="nodeName">
+    生成的ID:<input type="text" v-model="id" name="id">
+    <button type="button" @click="openId">开启服务</button>
+    <button type="button" @click="closeId">关闭服务</button>
+    <button type="button" @click="getId">获取id</button>
+</div>
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<script type="text/javascript">
+    let v1 = new Vue({
+        el: "#getId",
+        data: {
+            nodeName: '',
+            id: '',
+            type: 'NONE',
+        },
+        methods: {
+            openId: function () {
+                let params = new URLSearchParams();
+                params.append("nodeName", this.nodeName);
+                axios.post('openId', params).then(res => {
+                    if (res.data.code === 0) {
+                        alert("启动失败!原因是:" + res.data.msg);
+                    } else if (res.data.code === 1) {
+                        alert("服务开启成功");
+                    }
+                })
+            },
+            closeId: function () {
+                axios.post('closeId').then(res => {
+                    if (res.data.code === 0) {
+                        alert("关闭失败!原因是:" + res.data.msg);
+                    } else if (res.data.code === 1) {
+                        alert(res.data.msg);
+                    }
+                })
+            },
+            getId: function () {
+                let params = new URLSearchParams();
+                params.append('type', this.type);
+                axios.post('getId', params).then(res => {
+                    if (res.data.code === 0) {
+                        console.log(res.data)
+                        alert(res.data.msg);
+                    } else if (res.data.code === 1) {
+                        alert(res.data.msg);
+
+                        this.id = res.data.result;  console.log(this.id);
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

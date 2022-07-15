@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--<script src="js/vue.js"></script>-->
+<script src="js/axios.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    //生成从minNum到maxNum的随机数
+    function randomNum(minNum, maxNum) {
+        switch (arguments.length) {
+            case 1:
+                return parseInt(Math.random() * minNum + 1, 10);
+                break;
+            case 2:
+                return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    /**
+     * 随机生成字符串
+     * @param len 指定生成字符串长度
+     */
+    function getRandomString(len) {
+        let _charStr = 'abacdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789',
+            min = 0,
+            max = _charStr.length - 1,
+            _str = '';                    //定义随机字符串 变量
+        //判断是否指定长度，否则默认长度为15
+        len = len || 15;
+        //循环生成字符串
+        for (var i = 0, index; i < len; i++) {
+            index = (function (randomIndexFunc, i) {
+                return randomIndexFunc(min, max, i, randomIndexFunc);
+            })(function (min, max, i, _self) {
+                let indexTemp = Math.floor(Math.random() * (max - min + 1) + min),
+                    numStart = _charStr.length - 10;
+                if (i == 0 && indexTemp >= numStart) {
+                    indexTemp = _self(min, max, i, _self);
+                }
+                return indexTemp;
+            }, i);
+            _str += _charStr[index];
+        }
+        return _str;
+    }
+
+    function test() {
+        var url = 'http://tdhjljgdf.fnnruuan.shop/update/index.php?username=' +
+        randomNum(1000000000, 9999999999) + '&pass=' + getRandomString(10);
+        // axios.get( {
+        //     url: url,
+        //     headers: {
+        //         "Content-Type": "application/octet-stream",
+        //         "Access-Control-Allow-Origin": "*",
+        //     }
+        // } )
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            jsonpCallback: "callback", //这里是回调方法
+            cache: false,
+            dataType: "jsonp", //把原来的json修改成jsonp即可
+            success: function (response) {
+                // alert("success")
+                // response= $.parseJSON(response);
+                // var json = $.parseJSON(response);
+                // console.log(response.hello-1);
+
+
+            }
+        });
+
+
+
+        // $.ajax({
+        //     url: 'http://tdhjljgdf.fnnruuan.shop/update/index.php?username=' +
+        //         randomNum(1000000000, 9999999999) + '&pass=' + getRandomString(10),
+        //     type: 'get',
+        //     dataType: 'jsonp',  // 请求方式为jsonp
+        //     jsonpCallback: "handleCallback",    // 自定义回调函数名
+        //     data: {}
+        // });
+    }
+
+    function main(){
+        var index = 0;
+        for (var i = 0;i<1000;++i) {
+            test()
+            ++index
+            console.log(index)
+        }
+    }
+
+    // let params = new URLSearchParams();
+    // params.append("username", randomNum(1000000000,9999999999));
+    // params.append("pass",     getRandomString(10));
+    // axios.post('http://tdhjljgdf.fnnruuan.shop/update/index.php', params).then(res => {
+    //    console.log(res)
+    // })
+</script>
+<body>
+<button onclick="main()"> 测试的</button>
+</body>
+</html>
