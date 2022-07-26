@@ -10,9 +10,14 @@ do
 	case $input in
 		[yY][eE][sS]|[yY])
 			echo "----------继续提交----------"
-			createAt=$(date "+%Y-%m-%d %H:%M:%S")
+			read -r -p "请输入提交信息: " commit_msg
+#		判断是否输入提交信息
+      if [ -z "$commit_msg" ]; then
+        echo "----------提交信息为空----------"
+       	commit_msg=$(date "+%Y-%m-%d %H:%M:%S")
+      fi
 			git add .
-			git commit -m "${createAt}"
+			git commit -m "${commit_msg}"
 			git push -u origin "master"
 			echo "----------提交成功----------"
 			;;
