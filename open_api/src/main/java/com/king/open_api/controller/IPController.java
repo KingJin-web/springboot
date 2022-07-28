@@ -1,6 +1,8 @@
 package com.king.open_api.controller;
 
+import cn.hutool.http.HttpUtil;
 import com.king.open_api.service.GetAddressFromIpService;
+import com.king.open_api.util.IPUtils;
 import com.king.open_api.vo.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: King
@@ -31,8 +35,9 @@ public class IPController {
 
     @ApiOperation(value = "获取IP地址信息", notes = "获取IP地址信息")
     @GetMapping("/getIpInfo.do")
-    public ResultObj getIpInfo(String ip) {
+    public ResultObj getIpInfo(HttpServletRequest request) {
         try {
+            String ip = IPUtils.getIPAddress(request);
             return ResultObj.success(getAddressFromIpService.getAddressFromIp(ip));
         } catch (Exception e) {
             e.printStackTrace();

@@ -21,6 +21,7 @@ public class GetAddressFromIpService {
     //百度IP地址查询接口
     private static final String IP_URL_BAIDU = "http://opendata.baidu.com/api.php?query=IP&co=&resource_id=6006&oe=utf8";
 
+
     public IPEntryCN getAddressFromIp(String ip) {
         //替换IP_URL_TEST中的IP为客户端传入的IP
         String url = IP_URL_TEST.replace("IP", ip);
