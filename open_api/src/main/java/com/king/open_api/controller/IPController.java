@@ -5,6 +5,7 @@ import com.king.open_api.vo.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class IPController {
 
 
     @ApiOperation(value = "获取IP地址信息", notes = "获取IP地址信息")
-    @RequestMapping("/getIpInfo.do")
+    @GetMapping("/getIpInfo.do")
     public ResultObj getIpInfo(String ip) {
         try {
             return ResultObj.success(getAddressFromIpService.getAddressFromIp(ip));

@@ -7,6 +7,7 @@ import com.king.open_api.vo.ResultObj;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class WeatherController {
     }
 
     @ApiOperation(value = "获取天气信息", notes = "获取天气信息")
-    @RequestMapping("/getWeather.do")
+    @GetMapping("/getWeather.do")
     public ResultObj getWeather(HttpServletRequest request) {
         try {
             String ip = IPUtils.getIPAddress(request);
@@ -48,7 +49,7 @@ public class WeatherController {
 
 
     @ApiOperation(value = "获取今天天气信息", notes = "获取今天天气信息")
-    @RequestMapping("/getWeatherToDay.do")
+    @GetMapping("/getWeatherToDay.do")
     public ResultObj getWeatherToDay(HttpServletRequest request) {
         try {
             String ip = IPUtils.getIPAddress(request);
