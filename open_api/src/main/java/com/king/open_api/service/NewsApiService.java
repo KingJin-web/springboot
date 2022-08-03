@@ -33,7 +33,7 @@ public class NewsApiService {
         String s = getTencentNews();
         TencentNews tencentNews = JSON.parseObject(s, TencentNews.class);
         NewsModel newsModel = tencentNews.toNewsModel();
-        logger.info("获取到的新闻内容：{}", newsModel);
+//        logger.info("获取到的新闻内容：{}", newsModel);
         return ResultObj.success(newsModel);
     }
 
@@ -50,4 +50,6 @@ public class NewsApiService {
         logger.info("获取到的新闻内容：{}", newsModels);
         return ResultObj.success(newsModels);
     }
+
+    //获取沙雕新闻
 }

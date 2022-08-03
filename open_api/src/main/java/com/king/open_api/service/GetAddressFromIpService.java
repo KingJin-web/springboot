@@ -16,6 +16,7 @@ public class GetAddressFromIpService {
 
     private static final String IP_URL = "http://ip.taobao.com/service/getIpInfo.php?ip=";
 
+    private static final String IP_URL_TaoBao = "https://ip.taobao.com/outGetIpInfo?accessKey=alibaba-inc&ip=%s";
     private static final String IP_URL_TEST = "http://ip-api.com/json/IP?lang=zh-CN";
 
     //百度IP地址查询接口
@@ -29,8 +30,20 @@ public class GetAddressFromIpService {
         return JSON.parseObject(result, IPEntryCN.class);
     }
 
+    public IPEntryCN getAddressFromIpTaoBao(String ip) {
+        String url = String.format(IP_URL_TaoBao, ip);
+        String result = HttpUtil.get(url);
+        System.out.println(result);
+        return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new GetAddressFromIpService().getAddressFromIpTaoBao("58.39.97.32"));
+    }
+
     /**
      * 纯真IP地址查询接口
+     *
      * @param ip
      * @return
      */
@@ -43,9 +56,6 @@ public class GetAddressFromIpService {
         ipEntryCN.setRegion(ipSeekerService.getAddress(ip));
         return ipEntryCN;
     }
-
-
-
 
 
 }
